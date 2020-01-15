@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spective_sih/state/complaint_provider.dart';
 import 'package:spective_sih/ui/components/profile_appbar.dart';
+import 'package:spective_sih/ui/screens/details_page.dart';
 
 class ComplaintsPage extends StatefulWidget {
   final TextEditingController editingController;
@@ -42,7 +43,7 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: TextField(
+              child: TextFormField(
                 keyboardType: TextInputType.multiline,
                 controller: widget.editingController,
                 maxLines: 10,
@@ -111,12 +112,15 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Text('Next'),
-                    Icon(Icons.arrow_forward_ios)
+                    Text('Next', style: TextStyle(color: Colors.white),),
+                    Icon(Icons.arrow_forward_ios, color: Colors.white,)
                   ],
                 ),
                 onPressed: () {
                   complaintProvider.postComplaint();
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                    builder: (context) => DetailsPage()
+                  ));
                 },
               ),
             )

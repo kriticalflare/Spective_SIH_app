@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spective_sih/models/complaint.dart';
+import 'package:spective_sih/models/complaint_response.dart';
+import 'package:spective_sih/models/crime_details.dart';
 import 'package:spective_sih/network/network_helper.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -7,15 +9,17 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 class ComplaintsProvider with ChangeNotifier {
   NetworkHelper _networkHelper;
-  TextEditingController _editingController;
+  TextEditingController editingController;
   SpeechToText speech;
   bool _isListening;
+  Urldata _urldata;
 
+  TextEditingController get controller => editingController;
   bool get isListening => _isListening;
 
-  ComplaintsProvider(this._editingController) {
+  ComplaintsProvider(this.editingController) {
     _networkHelper = NetworkHelper();
-    _editingController.text = '';
+    editingController.text = '';
     _isListening = false;
   }
 
@@ -37,7 +41,7 @@ class ComplaintsProvider with ChangeNotifier {
 //    _editingController.text = _editingController.text + result.recognizedWords;
     notifyListeners();
     if (result.finalResult) {
-      _editingController.text = _editingController.text + result.recognizedWords + ' ';
+      editingController.text = editingController.text + result.recognizedWords + ' ';
       _isListening = false;
       speech.stop();
       notifyListeners();
@@ -64,7 +68,11 @@ class ComplaintsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> postComplaint() async {
-    await _networkHelper.postComplaint(Complaint(complaint: _editingController.text));
+  Future<Urldata> postComplaint() async {
+   _urldata =  await _networkHelper.postComplaint(Complaint(complaint: editingController.text));
+   return _urldata;
+  }
+  Future<void> sendCrimeDetails(CrimeDetails crimeDetails) async {
+    _networkHelper.postCrimeDetails(crimeDetails);
   }
 }

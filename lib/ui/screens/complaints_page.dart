@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:spective_sih/models/complaint_response.dart';
 import 'package:spective_sih/state/complaint_provider.dart';
 import 'package:spective_sih/ui/components/profile_appbar.dart';
 import 'package:spective_sih/ui/screens/details_page.dart';
@@ -116,10 +117,11 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                     Icon(Icons.arrow_forward_ios, color: Colors.white,)
                   ],
                 ),
-                onPressed: () {
-                  complaintProvider.postComplaint();
+                onPressed: () async {
+                  Urldata urldata = await complaintProvider.postComplaint();
+                  print(urldata.dates);
                   Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context) => DetailsPage()
+                    builder: (context) => DetailsPage(urldata)
                   ));
                 },
               ),

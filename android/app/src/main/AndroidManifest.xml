@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="spective_sih"
+        android:label="Spective"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -127,12 +127,12 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                     setState(() {
                       _loading = true; // Use provider for this too ? or setState is the more KISS solution since this is anyway local ui state
                     });
-                    Urldata urldata = await complaintProvider.postComplaint();
+                    Data data = await complaintProvider.postComplaint();
                     setState(() {
                       _loading = false;
                     });
                     Navigator.pushReplacement(context, MaterialPageRoute(
-                      builder: (context) => DetailsPage(urldata)
+                      builder: (context) => DetailsPage(data)
                     ));
                   },
                 ),

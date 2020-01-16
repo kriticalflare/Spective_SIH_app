@@ -9,9 +9,9 @@ import 'package:spective_sih/ui/components/profile_appbar.dart';
 import 'package:spective_sih/ui/screens/status_page.dart';
 
 class DetailsPage extends StatefulWidget {
-  final Urldata urldata;
+  final Data data;
 
-  DetailsPage(this.urldata);
+  DetailsPage(this.data);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -21,13 +21,25 @@ class _DetailsPageState extends State<DetailsPage> {
   TextEditingController editingControllerDates;
   TextEditingController editingControllerCrime;
   TextEditingController editingControllerComplaint;
+  String dates = "";
+  String crimes = "";
 
   @override
   void initState() {
-    editingControllerDates = TextEditingController(text: widget.urldata.dates.isNotEmpty ? widget.urldata.dates[0] : '');
-    editingControllerCrime = TextEditingController(text: 'some text');
-    editingControllerComplaint = TextEditingController(text: widget.urldata.inputText);
-    print(widget.urldata.toJson());
+    if(widget.data.dates.isNotEmpty){
+      for(String date in widget.data.dates){
+        dates = dates + ' ' + date ;
+      }
+    }
+    if(widget.data.dates.isNotEmpty){
+      for(String crime in widget.data.crime){
+        crimes = crimes + ' ' + crime ;
+      }
+    }
+
+    editingControllerDates = TextEditingController(text: dates);
+    editingControllerCrime = TextEditingController(text: crimes);
+    editingControllerComplaint = TextEditingController(text: widget.data.inputText);
     super.initState();
   }
 

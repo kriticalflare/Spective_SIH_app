@@ -12,7 +12,7 @@ class ComplaintsProvider with ChangeNotifier {
   TextEditingController editingController;
   SpeechToText speech;
   bool _isListening;
-  Urldata _urldata;
+  Data _data;
 
   TextEditingController get controller => editingController;
   bool get isListening => _isListening;
@@ -68,9 +68,9 @@ class ComplaintsProvider with ChangeNotifier {
     }
   }
 
-  Future<Urldata> postComplaint() async {
-   _urldata =  await _networkHelper.postComplaint(Complaint(complaint: editingController.text));
-   return _urldata;
+  Future<Data> postComplaint() async {
+   _data =  await _networkHelper.postComplaint(Complaint(complaint: editingController.text));
+   return _data;
   }
   Future<void> sendCrimeDetails(CrimeDetails crimeDetails) async {
     _networkHelper.postCrimeDetails(crimeDetails);

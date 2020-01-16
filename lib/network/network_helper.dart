@@ -10,7 +10,7 @@ class NetworkHelper {
 
   // /citizen for text analysis
   // /citizen/confirm for storing complaint in database
-  Future<Urldata> postComplaint(Complaint complaint) async {
+  Future<Data> postComplaint(Complaint complaint) async {
 
     try {
       http.Response response = await http.post(
@@ -21,7 +21,7 @@ class NetworkHelper {
       if (response.statusCode == 200 || response.statusCode == 201) {
         print('complaint post successful');
         print(response.body);
-        return ComplaintResponse.fromJson(jsonDecode(response.body)).data.urldata;
+        return ComplaintResponse.fromJson(jsonDecode(response.body)).data;
       } else {
         print(response.statusCode);
       }

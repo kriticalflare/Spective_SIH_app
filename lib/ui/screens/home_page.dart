@@ -14,23 +14,81 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            'Spective SIH'
-        ),
-      ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Placeholder(),
-          FlatButton(
-            child: Text(
-                'File a complaint'
+          Image.asset('assets/homepage_map.png' , height: MediaQuery.of(context).size.height * 0.8 , fit: BoxFit.fill),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
             ),
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(
-                  builder:(context) => ComplaintsPage(editingController: Provider.of<ComplaintsProvider>(context).controller,)
-              ));
-            },
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Hi Mahendra!',
+                  style: TextStyle(
+                    color: Colors.grey
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.add_alert
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: FlatButton(
+                  child: Text(
+                      'File a complaint',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400
+                    ),
+                  ),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(
+                        builder:(context) => ComplaintsPage(editingController: Provider.of<ComplaintsProvider>(context).controller,)
+                    ));
+                  },
+                ),
+              )
+            ],
+          ),
+          Divider(
+            indent: MediaQuery.of(context).size.width * 0.2,
+            color: Colors.grey,
+            endIndent: MediaQuery.of(context).size.width * 0.2,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                  Icons.keyboard_arrow_down
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: FlatButton(
+                  child: Text(
+                    'More',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400
+                    ),
+                  ),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(
+                        builder:(context) => ComplaintsPage(editingController: Provider.of<ComplaintsProvider>(context).controller,)
+                    ));
+                  },
+                ),
+              )
+            ],
           )
         ],
       ),

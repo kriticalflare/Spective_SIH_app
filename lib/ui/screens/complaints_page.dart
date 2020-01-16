@@ -15,7 +15,7 @@ class ComplaintsPage extends StatefulWidget {
 class _ComplaintsPageState extends State<ComplaintsPage> {
   @override
   void dispose() {
-    widget.editingController.dispose();
+    widget.editingController.clear();
     super.dispose();
   }
 
